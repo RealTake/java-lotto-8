@@ -8,21 +8,24 @@ import java.util.stream.IntStream;
  * 로또를 만들어 발급하는 클래스
  */
 public class LottoMachine {
-    private static final int PRICE_PER_TICKET = 1000;
+    public final static int LOTTO_NUMBER_COUNT = 6;
+    public final static int LOTTO_NUMBER_MIN = 1;
+    public final static int LOTTO_NUMBER_MAX = 45;
+    public final static int LOTTO_TICKET_PRICE = 1000;
 
     public static List<Lotto> issue(int amount) {
         validateAmount(amount);
-        final int ticketCount = amount / PRICE_PER_TICKET;
+        final int ticketCount = amount / LOTTO_TICKET_PRICE;
 
         return IntStream.range(0, ticketCount)
-                .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6))
+                .mapToObj(i -> Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT))
                 .map(Lotto::new)
                 .toList();
     }
 
     public static void validateAmount(int amount) {
-        if (amount % PRICE_PER_TICKET != 0) {
-            throw new IllegalArgumentException("구입 금액은 %,d원 단위여야 합니다.".formatted(PRICE_PER_TICKET));
+        if (amount % LOTTO_TICKET_PRICE != 0) {
+            throw new IllegalArgumentException("구입 금액은 %,d원 단위여야 합니다.".formatted(LOTTO_TICKET_PRICE));
         }
     }
 }

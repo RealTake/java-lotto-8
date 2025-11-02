@@ -25,6 +25,6 @@ class LottoTest {
     void 로또번호는_1에서_45_사이여야_함() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1부터 45 사이");
+                .hasMessageContaining("1~45 사이");
     }
 }

@@ -1,7 +1,9 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import static lotto.domain.LottoMachine.LOTTO_NUMBER_COUNT;
+import static lotto.domain.LottoMachine.LOTTO_NUMBER_MAX;
+import static lotto.domain.LottoMachine.LOTTO_NUMBER_MIN;
+
 import java.util.List;
 import java.util.Set;
 
@@ -15,19 +17,18 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 %d개여야 합니다.".formatted(LOTTO_NUMBER_COUNT));
         }
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
-        if (numbers.stream().anyMatch(n -> n < 1 || n > 45)) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이여야 합니다.");
+        if (numbers.stream().anyMatch(n -> n < LOTTO_NUMBER_MIN || n > LOTTO_NUMBER_MAX)) {
+            throw new IllegalArgumentException("로또 번호는 %d~%d 사이여야 합니다.".formatted(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX));
         }
     }
 
     public List<Integer> getNumbers() {
-        return numbers.parallelStream()
-                .toList();
+        return List.copyOf(numbers);
     }
 
     public int countMatchingNumbers(Set<Integer> winningNumbers) {
@@ -42,8 +43,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        final List<Integer> list = new ArrayList<>(this.numbers);
-        Collections.sort(list);
-        return list.toString();
+        return numbers.toString();
     }
 }
