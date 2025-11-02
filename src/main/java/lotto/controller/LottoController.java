@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
+import lotto.domain.Result;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,5 +22,9 @@ public class LottoController {
         final List<Integer> winningNumbersInput = InputView.inputWinningNumbers();
         final int bonusNumberInput = InputView.inputBonusNumber();
         final WinningNumbers winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumberInput);
+
+        // 당첨 결과 출력
+        final Result result = new Result(purchasedLottos, winningNumbers);
+        OutputView.printResult(result);
     }
 }
