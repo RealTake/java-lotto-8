@@ -1,10 +1,11 @@
 package lotto.domain;
 
+import static lotto.domain.LottoRule.LOTTO_TICKET_PRICE;
+
 import java.util.EnumMap;
 import java.util.List;
 
 public class Result {
-    private static final int LOTTO_PRICE = 1_000;
     private final EnumMap<LottoRank, Integer> statistics = new EnumMap<>(LottoRank.class);
 
     private final double profitRate;
@@ -21,7 +22,7 @@ public class Result {
             statistics.put(rank, statistics.get(rank) + 1);
         }
 
-        this.profitRate = calculateProfitRate(lottos.size() * LOTTO_PRICE);
+        this.profitRate = calculateProfitRate(lottos.size() * LOTTO_TICKET_PRICE);
     }
 
     /**
