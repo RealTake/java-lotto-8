@@ -32,7 +32,7 @@ public class InputView extends WoowaCourseConsoleView {
                             .map(Integer::parseInt)
                             .toList();
 
-                    WinningNumbers.validate(winningNumber, 0);
+                    WinningNumbers.validateNumbers(winningNumber);
                 }
         );
 
@@ -44,7 +44,7 @@ public class InputView extends WoowaCourseConsoleView {
             println(MESSAGE_BONUS_NUMBER);
             bonusNumber = Integer.parseInt(input());
 
-            WinningNumbers.validate(winningNumber, 0);
+            WinningNumbers.validateBonusNumber(winningNumber, bonusNumber);
         });
 
         return bonusNumber;
