@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Rank;
+import lotto.domain.LottoRank;
 import lotto.domain.Result;
 import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.Test;
@@ -18,6 +18,6 @@ class OutputViewTest {
                 new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7)
         );
 
-        assertThat(result.getStatistics()).containsKeys(Rank.FIRST);
+        assertThat(result.getStatistics()).containsKeys(LottoRank.FIRST);
     }
 }

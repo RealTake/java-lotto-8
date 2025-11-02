@@ -1,14 +1,14 @@
 package lotto.view;
 
-import static lotto.domain.Rank.FIFTH;
-import static lotto.domain.Rank.FIRST;
-import static lotto.domain.Rank.FOURTH;
-import static lotto.domain.Rank.SECOND;
-import static lotto.domain.Rank.THIRD;
+import static lotto.domain.LottoRank.FIFTH;
+import static lotto.domain.LottoRank.FIRST;
+import static lotto.domain.LottoRank.FOURTH;
+import static lotto.domain.LottoRank.SECOND;
+import static lotto.domain.LottoRank.THIRD;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Rank;
+import lotto.domain.LottoRank;
 import lotto.domain.Result;
 
 public class OutputView extends WoowaCourseConsoleView {
@@ -18,7 +18,7 @@ public class OutputView extends WoowaCourseConsoleView {
     private static final String MESSAGE_OUTPUT_RESULT_TITLE = "당첨 통계\n---";
     private static final String MESSAGE_OUTPUT_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
 
-    private static final List<Rank> SHOWED_RANKS = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
+    private static final List<LottoRank> SHOWED_RANKS = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
 
     public static void printPurchasedLottos(List<Lotto> lottos) {
         println(MESSAGE_OUTPUT_PURCHASE_LOTTO_COUNT.formatted(lottos.size()));
@@ -28,7 +28,7 @@ public class OutputView extends WoowaCourseConsoleView {
     public static void printResult(Result result) {
         println(MESSAGE_OUTPUT_RESULT_TITLE);
 
-        for (Rank rank : SHOWED_RANKS) {
+        for (LottoRank rank : SHOWED_RANKS) {
             int matchCount = rank.getMatchCount();
             int prize = rank.getPrize();
             int matchRankCount = result.getCountByRank(rank);

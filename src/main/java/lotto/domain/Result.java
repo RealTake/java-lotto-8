@@ -5,19 +5,19 @@ import java.util.List;
 
 public class Result {
     private static final int LOTTO_PRICE = 1_000;
-    private final EnumMap<Rank, Integer> statistics = new EnumMap<>(Rank.class);
+    private final EnumMap<LottoRank, Integer> statistics = new EnumMap<>(LottoRank.class);
 
     private final double profitRate;
 
     public Result(List<Lotto> lottos, WinningNumbers winningNumbers) {
-        for (Rank rank : Rank.values()) {
+        for (LottoRank rank : LottoRank.values()) {
             statistics.put(rank, 0);
         }
 
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchingNumbers(winningNumbers.getNumbers());
             boolean bonusMatch = lotto.contains(winningNumbers.getBonusNumber());
-            Rank rank = Rank.valueOf(matchCount, bonusMatch);
+            LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
             statistics.put(rank, statistics.get(rank) + 1);
         }
 
@@ -35,11 +35,11 @@ public class Result {
         return Math.round(((double) totalPrize / totalSpent) * 1000) / 10.0;
     }
 
-    public EnumMap<Rank, Integer> getStatistics() {
+    public EnumMap<LottoRank, Integer> getStatistics() {
         return new EnumMap<>(statistics);
     }
 
-    public int getCountByRank(Rank rank) {
+    public int getCountByRank(LottoRank rank) {
         return statistics.get(rank);
     }
 

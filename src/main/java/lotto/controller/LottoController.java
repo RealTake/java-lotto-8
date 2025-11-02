@@ -2,9 +2,9 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
 import lotto.domain.Result;
 import lotto.domain.WinningNumbers;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,7 +15,7 @@ public class LottoController {
         final int purchaseAmount = InputView.inputPurchaseAmount();
 
         // 구매한 로또 풀력
-        final List<Lotto> purchasedLottos = LottoMachine.issue(purchaseAmount);
+        final List<Lotto> purchasedLottos = LottoService.issueTickets(purchaseAmount);
         OutputView.printPurchasedLottos(purchasedLottos);
 
         // 당첨 번호 입력
