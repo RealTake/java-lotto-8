@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,7 +9,7 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
         LottoRule.validate(numbers, bonusNumber);
-        this.numbers = Collections.unmodifiableSet(new HashSet<>(numbers));
+        this.numbers = Set.copyOf(numbers);
         this.bonusNumber = bonusNumber;
     }
 
