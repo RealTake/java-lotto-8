@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.LottoMachine;
 import lotto.domain.WinningNumbers;
 
 public class InputView extends WoowaCourseConsoleView {
@@ -17,6 +18,7 @@ public class InputView extends WoowaCourseConsoleView {
         retry(() -> {
             println(MESSAGE_PURCHASE_AMOUNT);
             purchaseAmount = Integer.parseInt(input());
+            LottoMachine.validateAmount(purchaseAmount);
         });
 
         return purchaseAmount;
